@@ -1,0 +1,64 @@
+<!docytpe html>
+<html ng-app='esgsDirectory'>
+    <head>
+        <title>ESGS 14U All-Star Directory</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        
+        <!-- BOOTSTRAP CSS CDN -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <!-- CUSTOM CSS -->
+        <link rel="stylesheet" href="_css/main.css">
+        <!-- GOOGLE FONTS -->
+        <link href='http://fonts.googleapis.com/css?family=Dosis|Abel|News+Cycle|Syncopate|Quicksand|Josefin+Sans|Raleway|Pontano+Sans|Electrolize|Julius+Sans+One' rel='stylesheet' type='text/css'>
+        
+        <!-- FAVICON -->
+        <link rel="shortcut icon" type="image/x-icon" href="_images/favicon.ico">
+    </head>
+    <body ng-controller='ESGSController'>
+        <div class="jumbotron">
+            <div class='row'>
+                <div class="col-xs-12 text-center">
+                    <h1>El Segundo Girls Softball 12U<br>
+                    All-Star Directory (2014)</h1>
+                </div>
+                <div class="col-xs-12 text-center">
+                    <p class="search">Search:</p>
+                    <input  name='search' ng-model='query' />
+                </div> <!-- END COL-XS-12 -->
+                <div class="col-xs-12 text-center">
+                    <p class="filter">Filter:</p>
+                    <button class="btn btn-primary" ng-click="myFilter = null">All</button>
+                    <button class="btn btn-primary" ng-click="myFilter = {role: 'parent'}">Parent</button>
+                    <button class="btn btn-primary" ng-click="myFilter = {role: 'player'}">Player</button>
+                </div> <!-- END COL-XS-12 -->
+            </div> <!-- END ROW -->
+        </div> <!-- END JUMBOTRON -->
+        <div class="row">
+            <div class="col-xs-12">
+                <ul>
+                    <li class='details'>( Click on name to show details )</li>
+                    <li ng-repeat='person in people | filter:query | orderBy:["lastname", "firstname"] | filter:myFilter'>
+                        <h3 class="name" ng-click="showView = !showView">{{ person.firstname }} {{ person.lastname }}</h3>
+                        <ul class="innerUl" ng-show='showView'>
+                            <li class="innerLi" ng-show='person.email'><strong>Email:</strong><a href="mailto:{{ person.email }}" class="email"> {{ person.email }}</a></li>
+                            <li class="innerLi"><strong>Phone:</strong><a href="tel:{{person.phone}}" class="phone"> {{ person.phone }}</a></li>
+                            <li class="innerLi" ng-show="person.jerseynumber"><strong>Jersey Number:</strong> {{ person.jerseynumber }}</li>
+                            <li class="innerLi"><strong>Role:</strong> {{ person.role }}</li>
+                        </ul> <!-- END INNERUL -->
+                    </li> <!-- END ng-repeat -->
+                </ul>
+            </div> <!-- END COL-XS-12 -->
+        </div> <!-- END ROW -->
+        
+        <!-- JQUERY CDN -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <!-- ANGULARJS CDN -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+        <!-- BOOTSTRAP 3 CDN -->
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <!-- CUSTOM JS -->
+        <script src="_js/main.js"></script>
+        <script src="_js/controllers.js"></script>
+        <script src="_js/myjQuery.js"></script>
+    </body>
+</html>
