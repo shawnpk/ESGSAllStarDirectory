@@ -1,1 +1,1 @@
-var app = angular.module( 'esgsDirectory' , [ 'ESGSController' ] );
+var app = angular.module('esgsDirectory', ['ESGSController']);
